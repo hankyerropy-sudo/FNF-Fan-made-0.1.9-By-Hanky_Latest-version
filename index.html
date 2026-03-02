@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Friday Night Funkin' — Fan Made v0.1.6</title>
+<title>Friday Night Funkin' — Fan Made v0.1.7</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
 
@@ -103,6 +103,13 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
 .wr-week3 .week-row-title{color:#ee88ff;}
 .wr-week4::before{background:#44bb44;}.wr-week4:active,.wr-week4:hover{background:rgba(68,187,68,.08);}
 .wr-week4 .week-row-title{color:#88ff88;}
+.wr-week5::before{background:#ff8800;}.wr-week5:active,.wr-week5:hover{background:rgba(255,136,0,.08);}
+.wr-week5 .week-row-title{color:#ffbb44;}
+.wr-week6::before{background:#00bbff;}.wr-week6:active,.wr-week6:hover{background:rgba(0,187,255,.08);}
+.wr-week6 .week-row-title{color:#55ddff;}
+/* Nightmare difficulty */
+.dbtn-nightmare{border-color:#aa00ff;color:#aa00ff;}
+.dbtn-nightmare.sel,.dbtn-nightmare:active{background:rgba(170,0,255,.15);}
 
 /* ══ SONG SELECT (improved) ══ */
 #songSelect{
@@ -166,12 +173,14 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
 .how-section p,.how-section li,.info-card p{font-size:clamp(11px,2vw,15px);color:#ccc;line-height:1.9;margin-bottom:2px;list-style:none;}
 
 /* ══ GAME SCREEN ══ */
-#gameScreen{flex-direction:column;position:relative;}
+#gameScreen{flex-direction:column;position:relative;padding-bottom:calc(80px + env(safe-area-inset-bottom,16px));}
 #gameScreen.bg-tutorial{background:linear-gradient(180deg,#1a0a2e,#0d0520 50%,#180828);}
 #gameScreen.bg-week1   {background:linear-gradient(180deg,#1e0a00,#100400 50%,#1a0600);}
 #gameScreen.bg-week2   {background:linear-gradient(180deg,#001e12,#000d08 50%,#001a10);}
 #gameScreen.bg-week3   {background:linear-gradient(180deg,#200020,#0d000d 50%,#1a001a);}
 #gameScreen.bg-week4   {background:linear-gradient(180deg,#001400,#000a00 50%,#001a00);}
+#gameScreen.bg-week5   {background:linear-gradient(180deg,#1e0e00,#130700 50%,#1a0b00);}
+#gameScreen.bg-week6   {background:linear-gradient(180deg,#001520,#000d14 50%,#001824);}
 .stage-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 
 /* ── HUD ── */
@@ -264,47 +273,31 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
 .miss-flash{position:absolute;inset:0;background:rgba(255,0,0,.12);z-index:25;pointer-events:none;animation:flashOut .28s forwards;}
 @keyframes flashOut{from{opacity:1}to{opacity:0}}
 
-/* ══ MOBILE BUTTONS v0.1.6 ══
-   Fixed: moved UP so they never get clipped
-   Bigger touch targets, cleaner layout          */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
+/* ══ MOBILE BUTTONS v0.1.7 ══
+   FIXED: position:fixed so nav bar never covers them
+   env(safe-area-inset-bottom) for notch/gesture bar  */
+.mobile-btns{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  display:flex;justify-content:center;align-items:center;
+  gap:clamp(6px,1.8vw,14px);
+  /* Safe area: pushes above phone nav bar on ALL devices */
+  padding:10px 8px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom, 16px));
+  background:rgba(0,0,0,.88);backdrop-filter:blur(8px);
+  z-index:200;
+  border-top:2px solid rgba(255,255,255,.08);
+  box-shadow:0 -4px 20px rgba(0,0,0,.6);
 }
-
-#game {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 140px);
-}
-
-.mobile-btns {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 140px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-
-  z-index: 9999;
-}
+/* push content above fixed buttons */
 .arrow-btn{
-  width:clamp(58px,14vw,86px);height:clamp(58px,14vw,86px);
-  border-radius:10px;border:3px solid;background:rgba(10,10,20,.7);
-  font-size:clamp(24px,5.5vw,40px);
+  width:clamp(60px,14.5vw,88px);height:clamp(60px,14.5vw,88px);
+  border-radius:10px;border:3px solid;background:rgba(10,10,20,.75);
+  font-size:clamp(25px,5.8vw,42px);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;-webkit-tap-highlight-color:transparent;
   transition:opacity .07s,transform .07s,box-shadow .07s;
   position:relative;overflow:hidden;touch-action:none;
-  /* FIX: explicit positioning — prevents layout shift */
   flex-shrink:0;
 }
 .arrow-btn::after{content:'';position:absolute;inset:0;border-radius:8px;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.09),transparent 60%);}
@@ -312,7 +305,7 @@ html, body {
 .arrow-btn:nth-child(2){border-color:var(--down);color:var(--down);}
 .arrow-btn:nth-child(3){border-color:var(--up);color:var(--up);}
 .arrow-btn:nth-child(4){border-color:var(--right);color:var(--right);}
-.arrow-btn.pressed{opacity:.4;transform:scale(.83);box-shadow:0 0 20px currentColor;}
+.arrow-btn.pressed{opacity:.38;transform:scale(.82);box-shadow:0 0 22px currentColor;}
 
 /* ── COUNTDOWN ── */
 .countdown{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Press Start 2P',cursive;font-size:clamp(44px,13vw,86px);color:#fff;text-shadow:4px 4px 0 #000,0 0 50px var(--pink);z-index:30;animation:countAnim .85s ease-out forwards;pointer-events:none;}
@@ -373,12 +366,12 @@ html, body {
     <div class="logo">🎵 FRIDAY NIGHT<br>FUNKIN'</div>
     <div class="logo-sub">FAN MADE EDITION</div>
   </div>
-  <div class="version-tag">v0.1.6 — MOBILE COMPATIBLE</div>
+  <div class="version-tag">v0.1.7 — MOBILE COMPATIBLE</div>
   <button class="menu-btn" onclick="showScreen('weekSelect')">▶ SELECT WEEK</button>
   <button class="menu-btn" onclick="showScreen('howToPlay')">❓ HOW TO PLAY</button>
   <button class="menu-btn" onclick="showScreen('gameInfo')">ℹ GAME INFO</button>
   <button class="menu-btn" onclick="showScreen('settingsScreen')">⚙ SETTINGS</button>
-  <div class="patch-badge">v0.1.6 PATCH</div>
+  <div class="patch-badge">v0.1.7 PATCH</div>
 </div>
 
 <!-- ════ NEW WEEK SELECT UI ════ -->
@@ -453,6 +446,32 @@ html, body {
       </div>
       <div class="week-row-arrow">›</div>
     </div>
+    <!-- Week 5 -->
+    <div class="week-row wr-week5" onclick="selectWeek('week5')">
+      <div class="week-num">
+        <div class="week-num-label">WK 5</div>
+        <div class="week-num-emoji">🎸</div>
+      </div>
+      <div class="week-info">
+        <div class="week-row-title">Vs Jung</div>
+        <div class="week-row-sub">The rhythm master</div>
+        <div class="week-row-songs">♪ Bad Boy</div>
+      </div>
+      <div class="week-row-arrow">›</div>
+    </div>
+    <!-- Week 6 -->
+    <div class="week-row wr-week6" onclick="selectWeek('week6')">
+      <div class="week-num">
+        <div class="week-num-label">WK 6</div>
+        <div class="week-num-emoji">🥁</div>
+      </div>
+      <div class="week-info">
+        <div class="week-row-title">Vs O</div>
+        <div class="week-row-sub">The mysterious one</div>
+        <div class="week-row-songs">♪ Tung Tung Sahura</div>
+      </div>
+      <div class="week-row-arrow">›</div>
+    </div>
   </div>
 </div>
 
@@ -507,13 +526,14 @@ html, body {
       <div class="lane" id="lane3"><div class="receptor-line"></div><div class="receptor" id="rec3">▶</div></div>
     </div>
   </div>
-  <!-- MOBILE BUTTONS — fixed position & size -->
-  <div class="mobile-btns">
-    <div class="arrow-btn" id="abtn0">◀</div>
-    <div class="arrow-btn" id="abtn1">▼</div>
-    <div class="arrow-btn" id="abtn2">▲</div>
-    <div class="arrow-btn" id="abtn3">▶</div>
-  </div>
+</div>
+
+<!-- MOBILE BUTTONS — FIXED outside gameScreen, always above nav bar -->
+<div class="mobile-btns" id="mobileBtns" style="display:none">
+  <div class="arrow-btn" id="abtn0">◀</div>
+  <div class="arrow-btn" id="abtn1">▼</div>
+  <div class="arrow-btn" id="abtn2">▲</div>
+  <div class="arrow-btn" id="abtn3">▶</div>
 </div>
 
 <!-- ════ PAUSE ════ -->
@@ -581,24 +601,23 @@ html, body {
     Week 1: Rap Time · Dad Battle<br>
     Week 2: Familiar · Blamed<br>
     Week 3: Wrong Select · Try Fight Mommy!<br>
-    Week 4: Brain · Fight It</p>
+    Week 4: Brain · Fight It<br>
+    Week 5: Bad Boy<br>
+    Week 6: Tung Tung Sahura</p>
   </div>
-  <div class="info-card"><h3>📋 PATCH NOTES v0.1.6</h3>
-    <p>✅ EASY diff button click bug fixed<br>
-    ✅ Diff buttons now isolated from song card tap<br>
-    ✅ Mobile button positions fixed (no clipping)<br>
-    ✅ Arrow button touch targets enlarged<br>
-    ✅ endSong() double-call fully guarded<br>
-    🗺️ New Week Select UI — row-based list design<br>
-    🗺️ Week rows with emoji, colour accent, arrow<br>
-    🎵 New Song Select — diff buttons on right side<br>
-    📊 New Time Bar — centered clock + remaining time<br>
-    ⚡ Canvas BG: reduced particle count, 30fps cap<br>
-    ⚡ Note DOM: clearTimeout on note._tid before remove<br>
-    ⚡ setPointerCapture wrapped in try/catch</p>
+  <div class="info-card"><h3>📋 PATCH NOTES v0.1.7</h3>
+    <p>✅ Mobile buttons now FIXED position — always visible<br>
+    ✅ env(safe-area-inset-bottom) — clears phone nav bar<br>
+    ✅ Works on GitHub Pages &amp; all web browsers<br>
+    ✅ Button touch area enlarged (60px min)<br>
+    ✅ General bug fixes<br>
+    😈 NIGHTMARE difficulty added — ultra fast notes<br>
+    🎸 Week 5: Vs Jung — Song: Bad Boy<br>
+    🥁 Week 6: Vs O — Song: Tung Tung Sahura<br>
+    🌟 Week 5 &amp; 6 have custom stage backgrounds</p>
   </div>
   <div class="info-card"><h3>⚙️ VERSION</h3>
-    <p>FNF Fan Made Mobile v0.1.6<br>4 Weeks + Tutorial · All Platforms</p>
+    <p>FNF Fan Made Mobile v0.1.7<br>6 Weeks + Tutorial · All Platforms</p>
   </div>
 </div>
 
@@ -719,7 +738,13 @@ function resetSettings(){
 }
 
 /* ══════════ NAVIGATION ══════════ */
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // Show mobile buttons only during gameplay
+  const mb=document.getElementById('mobileBtns');
+  if(mb) mb.style.display=(id==='gameScreen')?'flex':'none';
+}
 
 /* ══════════ WEEK DATA ══════════ */
 const WEEKS={
@@ -728,6 +753,8 @@ const WEEKS={
   week2:{title:'WEEK 2 — Vs Pica',songs:['Familiar','Blamed'],bpm:[115,125],opponent:'Pica 😎',oppEmoji:'😎',bgClass:'bg-week2'},
   week3:{title:'WEEK 3 — Vs Must',songs:['Wrong Select','Try Fight Mommy!'],bpm:[120,130],opponent:'Must 👩',oppEmoji:'👩',bgClass:'bg-week3'},
   week4:{title:'WEEK 4 — Vs Zombie',songs:['Brain','Fight It'],bpm:[135,145],opponent:'Zombie 🧟',oppEmoji:'🧟',bgClass:'bg-week4'},
+  week5:{title:'WEEK 5 — Vs Jung',songs:['Bad Boy'],bpm:[148],opponent:'Jung 🎸',oppEmoji:'🎸',bgClass:'bg-week5'},
+  week6:{title:'WEEK 6 — Vs O',songs:['Tung Tung Sahura'],bpm:[155],opponent:'O 🥁',oppEmoji:'🥁',bgClass:'bg-week6'},
 };
 let curWeek=null,curSong=null,curDiff='normal',lastSong=null;
 
@@ -757,7 +784,7 @@ function selectWeek(wid){
     const diffs=document.createElement('div');
     diffs.className='song-row-diffs';
 
-    ['easy','normal','hard'].forEach(d=>{
+    ['easy','normal','hard','nightmare'].forEach(d=>{
       const btn=document.createElement('button');
       btn.className='dbtn dbtn-'+d+(d==='normal'?' sel':'');
       btn.textContent=d.toUpperCase();
@@ -793,6 +820,8 @@ const BG_CFG={
   'bg-week2':   {n:20,colors:['#00ff88','#00cc55','#aaffcc'],type:'circles',grad:['rgba(0,45,22,.45)','rgba(0,15,8,.45)']},
   'bg-week3':   {n:22,colors:['#cc00cc','#880088','#ff55ff'],type:'diamonds',grad:['rgba(45,0,45,.45)','rgba(18,0,18,.45)']},
   'bg-week4':   {n:24,colors:['#00aa00','#006600','#33ff33'],type:'zombieBits',grad:['rgba(0,20,0,.55)','rgba(0,5,0,.55)']},
+  'bg-week5':   {n:26,colors:['#ff8800','#ffaa33','#ffdd88'],type:'squares',grad:['rgba(60,25,0,.5)','rgba(20,8,0,.5)']},
+  'bg-week6':   {n:24,colors:['#00bbff','#0088cc','#88ddff'],type:'diamonds',grad:['rgba(0,20,45,.5)','rgba(0,8,20,.5)']},
 };
 function initBackground(bgClass){
   const gs=document.getElementById('gameScreen');
@@ -834,10 +863,10 @@ function stopBackground(){if(bgFrame){cancelAnimationFrame(bgFrame);bgFrame=null
 
 /* ══════════ GAME ENGINE ══════════ */
 const ARROWS=['◀','▼','▲','▶'];
-const BASE_SPD ={easy:3900,normal:2700,hard:1600};
-const BASE_MISS={easy:4,normal:8,hard:15};
-const BASE_RATE={easy:1060,normal:730,hard:450};
-const BASE_WIN ={easy:152,normal:116,hard:83};
+const BASE_SPD ={easy:3900,normal:2700,hard:1600,nightmare:900};
+const BASE_MISS={easy:4,normal:8,hard:15,nightmare:25};
+const BASE_RATE={easy:1060,normal:730,hard:450,nightmare:260};
+const BASE_WIN ={easy:152,normal:116,hard:83,nightmare:58};
 const WIN_MULT ={tight:.65,normal:1,lenient:1.5};
 const DRAIN_TBL=[0,.008,.03,.055,.09,.13];
 const noteSpd =()=>BASE_SPD[curDiff]/(S.noteSpeed/3);
@@ -886,7 +915,7 @@ function startSong(songName,songIdx,week){
   document.getElementById('hcOpp').textContent=week.oppEmoji||'👤';
   document.getElementById('hlOpp').textContent=week.opponent.split(' ')[0].toUpperCase().slice(0,6);
   Object.assign(G,{score:0,bfHp:50,combo:0,maxCombo:0,sick:0,good:0,bad:0,miss:0,notesFallen:0,active:false,paused:false,pressed:[false,false,false,false],elapsed:0});
-  G.songDur={easy:55000,normal:48000,hard:42000}[curDiff];
+  G.songDur={easy:55000,normal:48000,hard:42000,nightmare:38000}[curDiff]||48000;
   clearNotes();updateHUD();resetTimeBar();applyScrollDir();
   initBackground(week.bgClass);
   document.getElementById('pauseOverlay').classList.remove('visible');
