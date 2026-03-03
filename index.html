@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Friday Night Funkin' — Fan Made v0.1.7</title>
+<title>Friday Night Funkin' — Fan Made v0.1.8</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
 
@@ -103,10 +103,6 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
 .wr-week3 .week-row-title{color:#ee88ff;}
 .wr-week4::before{background:#44bb44;}.wr-week4:active,.wr-week4:hover{background:rgba(68,187,68,.08);}
 .wr-week4 .week-row-title{color:#88ff88;}
-.wr-week5::before{background:#ff8800;}.wr-week5:active,.wr-week5:hover{background:rgba(255,136,0,.08);}
-.wr-week5 .week-row-title{color:#ffbb44;}
-.wr-week6::before{background:#00bbff;}.wr-week6:active,.wr-week6:hover{background:rgba(0,187,255,.08);}
-.wr-week6 .week-row-title{color:#55ddff;}
 /* Nightmare difficulty */
 .dbtn-nightmare{border-color:#aa00ff;color:#aa00ff;}
 .dbtn-nightmare.sel,.dbtn-nightmare:active{background:rgba(170,0,255,.15);}
@@ -179,8 +175,7 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
 #gameScreen.bg-week2   {background:linear-gradient(180deg,#001e12,#000d08 50%,#001a10);}
 #gameScreen.bg-week3   {background:linear-gradient(180deg,#200020,#0d000d 50%,#1a001a);}
 #gameScreen.bg-week4   {background:linear-gradient(180deg,#001400,#000a00 50%,#001a00);}
-#gameScreen.bg-week5   {background:linear-gradient(180deg,#1e0e00,#130700 50%,#1a0b00);}
-#gameScreen.bg-week6   {background:linear-gradient(180deg,#001520,#000d14 50%,#001824);}
+#gameScreen.bg-all     {background:linear-gradient(180deg,#0a0020,#050010 50%,#0d0030);}
 .stage-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 
 /* ── HUD ── */
@@ -366,12 +361,12 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
     <div class="logo">🎵 FRIDAY NIGHT<br>FUNKIN'</div>
     <div class="logo-sub">FAN MADE EDITION</div>
   </div>
-  <div class="version-tag">v0.1.7 — MOBILE COMPATIBLE</div>
+  <div class="version-tag">v0.1.8 — MOBILE COMPATIBLE</div>
   <button class="menu-btn" onclick="showScreen('weekSelect')">▶ SELECT WEEK</button>
   <button class="menu-btn" onclick="showScreen('howToPlay')">❓ HOW TO PLAY</button>
   <button class="menu-btn" onclick="showScreen('gameInfo')">ℹ GAME INFO</button>
   <button class="menu-btn" onclick="showScreen('settingsScreen')">⚙ SETTINGS</button>
-  <div class="patch-badge">v0.1.7 PATCH</div>
+  <div class="patch-badge">v0.1.8 PATCH</div>
 </div>
 
 <!-- ════ NEW WEEK SELECT UI ════ -->
@@ -443,32 +438,6 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
         <div class="week-row-title">Vs Zombie ☣️</div>
         <div class="week-row-sub">Undead menace</div>
         <div class="week-row-songs">♪ Brain &nbsp;·&nbsp; ♪ Fight It</div>
-      </div>
-      <div class="week-row-arrow">›</div>
-    </div>
-    <!-- Week 5 -->
-    <div class="week-row wr-week5" onclick="selectWeek('week5')">
-      <div class="week-num">
-        <div class="week-num-label">WK 5</div>
-        <div class="week-num-emoji">🎸</div>
-      </div>
-      <div class="week-info">
-        <div class="week-row-title">Vs Jung</div>
-        <div class="week-row-sub">The rhythm master</div>
-        <div class="week-row-songs">♪ Bad Boy</div>
-      </div>
-      <div class="week-row-arrow">›</div>
-    </div>
-    <!-- Week 6 -->
-    <div class="week-row wr-week6" onclick="selectWeek('week6')">
-      <div class="week-num">
-        <div class="week-num-label">WK 6</div>
-        <div class="week-num-emoji">🥁</div>
-      </div>
-      <div class="week-info">
-        <div class="week-row-title">Vs O</div>
-        <div class="week-row-sub">The mysterious one</div>
-        <div class="week-row-songs">♪ Tung Tung Sahura</div>
       </div>
       <div class="week-row-arrow">›</div>
     </div>
@@ -601,23 +570,17 @@ body{background:var(--darker);font-family:'VT323',monospace;color:#fff;overflow:
     Week 1: Rap Time · Dad Battle<br>
     Week 2: Familiar · Blamed<br>
     Week 3: Wrong Select · Try Fight Mommy!<br>
-    Week 4: Brain · Fight It<br>
-    Week 5: Bad Boy<br>
-    Week 6: Tung Tung Sahura</p>
+    Week 4: Brain · Fight It</p>
   </div>
-  <div class="info-card"><h3>📋 PATCH NOTES v0.1.7</h3>
-    <p>✅ Mobile buttons now FIXED position — always visible<br>
-    ✅ env(safe-area-inset-bottom) — clears phone nav bar<br>
-    ✅ Works on GitHub Pages &amp; all web browsers<br>
-    ✅ Button touch area enlarged (60px min)<br>
-    ✅ General bug fixes<br>
-    😈 NIGHTMARE difficulty added — ultra fast notes<br>
-    🎸 Week 5: Vs Jung — Song: Bad Boy<br>
-    🥁 Week 6: Vs O — Song: Tung Tung Sahura<br>
-    🌟 Week 5 &amp; 6 have custom stage backgrounds</p>
+  <div class="info-card"><h3>📋 PATCH NOTES v0.1.8</h3>
+    <p>✅ Bug fixes &amp; stability improvements<br>
+    ✅ Week 5 &amp; 6 removed (coming soon!)<br>
+    🌟 NEW: ALL Stage Background — rainbow multi-stage animated canvas<br>
+    🎨 Colorful particle effects, glow rings &amp; animated scanlines<br>
+    🔧 General performance polish</p>
   </div>
   <div class="info-card"><h3>⚙️ VERSION</h3>
-    <p>FNF Fan Made Mobile v0.1.7<br>6 Weeks + Tutorial · All Platforms</p>
+    <p>FNF Fan Made Mobile v0.1.8<br>4 Weeks + Tutorial · All Platforms</p>
   </div>
 </div>
 
@@ -748,13 +711,11 @@ function showScreen(id){
 
 /* ══════════ WEEK DATA ══════════ */
 const WEEKS={
-  tutorial:{title:'TUTORIAL — Learning the Beat',songs:['BF Meeting GF','Lover'],bpm:[95,100],opponent:'GF 💖',oppEmoji:'💖',bgClass:'bg-tutorial'},
-  week1:{title:'WEEK 1 — Vs Dearest',songs:['Rap Time','Dad Battle'],bpm:[100,110],opponent:'Dearest 👨',oppEmoji:'👨',bgClass:'bg-week1'},
-  week2:{title:'WEEK 2 — Vs Pica',songs:['Familiar','Blamed'],bpm:[115,125],opponent:'Pica 😎',oppEmoji:'😎',bgClass:'bg-week2'},
-  week3:{title:'WEEK 3 — Vs Must',songs:['Wrong Select','Try Fight Mommy!'],bpm:[120,130],opponent:'Must 👩',oppEmoji:'👩',bgClass:'bg-week3'},
-  week4:{title:'WEEK 4 — Vs Zombie',songs:['Brain','Fight It'],bpm:[135,145],opponent:'Zombie 🧟',oppEmoji:'🧟',bgClass:'bg-week4'},
-  week5:{title:'WEEK 5 — Vs Jung',songs:['Bad Boy'],bpm:[148],opponent:'Jung 🎸',oppEmoji:'🎸',bgClass:'bg-week5'},
-  week6:{title:'WEEK 6 — Vs O',songs:['Tung Tung Sahura'],bpm:[155],opponent:'O 🥁',oppEmoji:'🥁',bgClass:'bg-week6'},
+  tutorial:{title:'TUTORIAL — Learning the Beat',songs:['BF Meeting GF','Lover'],bpm:[95,100],opponent:'GF 💖',oppEmoji:'💖',bgClass:'bg-all'},
+  week1:{title:'WEEK 1 — Vs Dearest',songs:['Rap Time','Dad Battle'],bpm:[100,110],opponent:'Dearest 👨',oppEmoji:'👨',bgClass:'bg-all'},
+  week2:{title:'WEEK 2 — Vs Pica',songs:['Familiar','Blamed'],bpm:[115,125],opponent:'Pica 😎',oppEmoji:'😎',bgClass:'bg-all'},
+  week3:{title:'WEEK 3 — Vs Must',songs:['Wrong Select','Try Fight Mommy!'],bpm:[120,130],opponent:'Must 👩',oppEmoji:'👩',bgClass:'bg-all'},
+  week4:{title:'WEEK 4 — Vs Zombie',songs:['Brain','Fight It'],bpm:[135,145],opponent:'Zombie 🧟',oppEmoji:'🧟',bgClass:'bg-all'},
 };
 let curWeek=null,curSong=null,curDiff='normal',lastSong=null;
 
@@ -820,8 +781,7 @@ const BG_CFG={
   'bg-week2':   {n:20,colors:['#00ff88','#00cc55','#aaffcc'],type:'circles',grad:['rgba(0,45,22,.45)','rgba(0,15,8,.45)']},
   'bg-week3':   {n:22,colors:['#cc00cc','#880088','#ff55ff'],type:'diamonds',grad:['rgba(45,0,45,.45)','rgba(18,0,18,.45)']},
   'bg-week4':   {n:24,colors:['#00aa00','#006600','#33ff33'],type:'zombieBits',grad:['rgba(0,20,0,.55)','rgba(0,5,0,.55)']},
-  'bg-week5':   {n:26,colors:['#ff8800','#ffaa33','#ffdd88'],type:'squares',grad:['rgba(60,25,0,.5)','rgba(20,8,0,.5)']},
-  'bg-week6':   {n:24,colors:['#00bbff','#0088cc','#88ddff'],type:'diamonds',grad:['rgba(0,20,45,.5)','rgba(0,8,20,.5)']},
+  'bg-all':     {n:40,colors:['#ff6bce','#00f5ff','#ffe600','#7b2fff','#00ff88','#ff6a00','#cc00cc','#00aa00'],type:'all',grad:['rgba(20,0,50,.55)','rgba(5,0,20,.55)']},
 };
 function initBackground(bgClass){
   const gs=document.getElementById('gameScreen');
@@ -841,6 +801,27 @@ function initBackground(bgClass){
     if(bgClass==='bg-week4'){
       ctx.save();ctx.globalAlpha=.05;const fog=ctx.createLinearGradient(0,H*.6,0,H);fog.addColorStop(0,'transparent');fog.addColorStop(1,'rgba(0,60,0,.5)');ctx.fillStyle=fog;ctx.fillRect(0,H*.6,W,H*.4);ctx.strokeStyle='#003300';ctx.lineWidth=1.2;for(let y=H*.75;y<H;y+=15){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}ctx.restore();
       ctx.save();ctx.globalAlpha=.08;ctx.fillStyle='#004400';[.1,.28,.46,.64,.82].forEach(xr=>{const gx=W*xr,gy=H*.78,gw=13,gh=22;ctx.fillRect(gx-gw/2,gy-gh,gw,gh);ctx.beginPath();ctx.arc(gx,gy-gh,gw/2,Math.PI,0);ctx.fill();});ctx.restore();
+    }else if(bgClass==='bg-all'){
+      /* ALL stage: animated rainbow scanlines + multi-color glow rings */
+      const t=bgLastTs*.0005;
+      ctx.save();ctx.globalAlpha=.06;
+      for(let y=0;y<H;y+=20){const hue=(y/H*360+t*60)%360;ctx.fillStyle=`hsl(${hue},100%,55%)`;ctx.fillRect(0,y,W,10);}
+      ctx.restore();
+      ctx.save();ctx.globalAlpha=.09;
+      [[W*.25,H*.35,80],[W*.75,H*.35,80],[W*.5,H*.65,100]].forEach(([cx,cy,rad])=>{
+        const hue=(t*40+cx)%360;
+        const rg=ctx.createRadialGradient(cx,cy,0,cx,cy,rad);
+        rg.addColorStop(0,`hsla(${hue},100%,65%,.8)`);rg.addColorStop(1,'transparent');
+        ctx.fillStyle=rg;ctx.beginPath();ctx.arc(cx,cy,rad,0,Math.PI*2);ctx.fill();
+      });
+      ctx.restore();
+      /* Checkerboard floor */
+      cbOff=(cbOff+.4)%60;const ft=H*.72,tw=36,tr=4;ctx.save();ctx.globalAlpha=.07;
+      for(let row=0;row<tr;row++)for(let col=-1;col<Math.ceil(W/tw)+2;col++){
+        if((row+col)%2===0){const hue=((col+row)*30+t*30)%360;ctx.fillStyle=`hsl(${hue},90%,50%)`;ctx.fillRect(col*tw+(cbOff%(tw*2))-tw,ft+row*tw,tw,tw);}
+      }
+      ctx.restore();
+      ctx.save();ctx.globalAlpha=.15;const hl=ctx.createLinearGradient(0,0,W,0);hl.addColorStop(0,'transparent');hl.addColorStop(.5,'#ffffff');hl.addColorStop(1,'transparent');ctx.fillStyle=hl;ctx.fillRect(0,H*.72-1,W,2);ctx.restore();
     }else{
       cbOff=(cbOff+.25)%60;const ft=H*.72,tw=36,tr=4;ctx.save();ctx.globalAlpha=.04;ctx.fillStyle='#fff';
       for(let row=0;row<tr;row++)for(let col=-1;col<Math.ceil(W/tw)+2;col++)if((row+col)%2===0)ctx.fillRect(col*tw+(cbOff%(tw*2))-tw,ft+row*tw,tw,tw);
@@ -851,6 +832,7 @@ function initBackground(bgClass){
       if(p.type==='squares')ctx.rect(p.x-p.r,p.y-p.r,p.r*2.3,p.r*2.3);
       else if(p.type==='diamonds'){ctx.moveTo(p.x,p.y-p.r*1.9);ctx.lineTo(p.x+p.r*1.3,p.y);ctx.lineTo(p.x,p.y+p.r*1.9);ctx.lineTo(p.x-p.r*1.3,p.y);ctx.closePath();}
       else if(p.type==='zombieBits'){const wx=p.x+Math.sin(p.wob)*2;ctx.moveTo(wx,p.y-p.r*1.9);ctx.quadraticCurveTo(wx+p.r*1.2,p.y,wx+p.r*.35,p.y+p.r*2.1);ctx.quadraticCurveTo(wx-p.r*.35,p.y+p.r*2.1,wx-p.r*1.2,p.y);ctx.closePath();}
+      else if(p.type==='all'){const shapes=['circle','square','diamond'];const sh=shapes[Math.floor(p.wob*3)%3];if(sh==='square')ctx.rect(p.x-p.r,p.y-p.r,p.r*2.3,p.r*2.3);else if(sh==='diamond'){ctx.moveTo(p.x,p.y-p.r*1.9);ctx.lineTo(p.x+p.r*1.3,p.y);ctx.lineTo(p.x,p.y+p.r*1.9);ctx.lineTo(p.x-p.r*1.3,p.y);ctx.closePath();}else ctx.arc(p.x,p.y,p.r*1.5,0,Math.PI*2);}
       else ctx.arc(p.x,p.y,p.r*1.5,0,Math.PI*2);
       ctx.fill();ctx.restore();
       p.x+=p.dx+(p.type==='zombieBits'?Math.sin(p.wob)*.15:0);p.y+=p.dy;
